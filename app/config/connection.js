@@ -27,4 +27,19 @@ connection.on('error', err => {
 
 connection.connect();
 
+var sql = `
+CREATE TABLE todos
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    task VARCHAR(255) NOT NULL,
+    done BOOLEAN NOT NULL DEFAULT 0,
+    PRIMARY KEY (id)
+);`;
+
+connection.query(sql, function (err, result) {
+	if (err) throw err;
+	console.log("Table created");
+});
+
+
 module.exports = connection;
